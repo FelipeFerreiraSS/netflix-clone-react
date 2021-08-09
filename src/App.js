@@ -1,21 +1,28 @@
 /* eslint-disable import/no-anonymous-default-export */
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Tmdb from './Tmdb'
+import MovieRow from './components/MovieRow'
 
 export default () => {
 
-  useEffect(()=> {
+  const [movieList, setMovieList] = useState([])
+
+  useState(()=> {
     const loadAll = async () => {
       let list = await Tmdb.getHomeList()
-      console.log(list)
+      setMovieList(list)
     }
 
     loadAll()
   }, [])
 
   return (
-    <div>
-      Olá mundo!
+    <div className="page">
+      <section className="list">
+        {movieList.map((item, key)=>(
+          <MovieRow key={key} title={item.title} items={item.items}  />
+        ))}
+      </section>
     </div>
   )
 }
