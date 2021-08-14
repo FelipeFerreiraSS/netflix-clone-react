@@ -32,7 +32,7 @@ export default () => {
         <FeaturedMovie item={featuredData} /> 
       }
 
-      <section className="liste">
+      <section className="lists">
         {movieList.map((item, key)=>(
           <MovieRow key={key} title={item.title} items={item.items}/>
         ))}
